@@ -18,6 +18,5 @@
         }
 
         public abstract void ChooseItem();
-
     }
 }

@@ -42,7 +42,6 @@ namespace Ex04.Menus.Delegates
             }
 
             Console.WriteLine($"0 -> {(this is MainMenu ? "Exit" : "Back")}");
-            
         }
 
         protected internal void PrintUserInputRequest()
