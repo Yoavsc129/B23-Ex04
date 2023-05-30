@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Ex04.Menus.Delegates
 {
-    class ActionMenuItem : MenuItem
+    public class ActionMenuItem : MenuItem
     {
         public event Action Chosen;
 
@@ -20,7 +17,10 @@ namespace Ex04.Menus.Delegates
 
         protected virtual void OnChosen()
         {
-
+            if(Chosen != null)
+            {
+                Chosen.Invoke();
+            }
         }
     }
 }

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Ex04.Menus.Delegates
 {
-    class Menu : MenuItem
+    public class Menu : MenuItem
     {
         private readonly List<MenuItem> r_MenuItems;
         private readonly Menu r_ParentMenu;
@@ -42,6 +40,9 @@ namespace Ex04.Menus.Delegates
             {
                 Console.WriteLine($"{i + 1} -> {r_MenuItems[i].MenuItemTitle}");
             }
+
+            Console.WriteLine($"0 -> {(this is MainMenu ? "Exit" : "Back")}");
+            
         }
 
         protected internal void PrintUserInputRequest()
@@ -54,7 +55,7 @@ namespace Ex04.Menus.Delegates
             s_CurrentMenu = this;
         }
 
-        protected internal void EnterInputForItem(int i_UserInput)//TODO: Change to better name
+        protected internal void ChooseItemFromInput(int i_UserInput)
         {
             r_MenuItems[i_UserInput - 1].ChooseItem();
         }

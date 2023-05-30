@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Ex04.Menus.Delegates
 {
-    class MainMenu : Menu
+    public class MainMenu : Menu
     {
+        private const string k_InvalidInputMsg = "Invalid input";
+
         public MainMenu(string i_MenuItemTitle) : base(null, i_MenuItemTitle)
         {
             s_CurrentMenu = this;
@@ -19,10 +18,10 @@ namespace Ex04.Menus.Delegates
 
             while(programIsRunning)
             {
-                Console.Clear();
                 displayCurrentMenu();
                 menuOption = readUserInput(s_CurrentMenu.MenuItemsCount);
-                if(menuOption == k_Back)
+                Console.Clear();
+                if (menuOption == k_Back)
                 {
                     if(s_CurrentMenu is MainMenu)
                     {
@@ -35,9 +34,10 @@ namespace Ex04.Menus.Delegates
                 }
                 else
                 {
-                    s_CurrentMenu.EnterInputForItem(menuOption);
+                    s_CurrentMenu.ChooseItemFromInput(menuOption);
                 }
             }
+            
         }
 
         private void displayCurrentMenu()
@@ -56,18 +56,20 @@ namespace Ex04.Menus.Delegates
 
         private int readUserInput(int i_InputRange)
         {
-            int userInput = -1;//TODO: Add const
+            int userInput = 0;
             bool inputIsInvalid = true;
+            bool parseSuccessful;
+
             while(inputIsInvalid)
             {
-                int.TryParse(Console.ReadLine(), out userInput);
-                if(userInput >= k_Back && userInput <= i_InputRange)
+                parseSuccessful = int.TryParse(Console.ReadLine(), out userInput);
+                if(userInput >= k_Back && userInput <= i_InputRange && parseSuccessful)
                 {
                     inputIsInvalid = false;
                 }
                 else
                 {
-                    Console.WriteLine("Invalid Input");//TODO: Add const
+                    Console.WriteLine(k_InvalidInputMsg);
                 }
             }
 
