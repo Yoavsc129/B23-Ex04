@@ -37,7 +37,6 @@ namespace Ex04.Menus.Delegates
                     s_CurrentMenu.ChooseItemFromInput(menuOption);
                 }
             }
-            
         }
 
         private void displayCurrentMenu()
