@@ -32,7 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="MenuTests.cs" />
     <Compile Include="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ex04.Menus.Delegates\Ex04.Menus.Delegates.csproj">
+      <Project>{25b314e1-2117-4c26-b62d-e177da45ef71}</Project>
+      <Name>Ex04.Menus.Delegates</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
