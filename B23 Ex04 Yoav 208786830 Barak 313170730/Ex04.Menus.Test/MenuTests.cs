@@ -14,14 +14,14 @@ namespace Ex04.Menus.Test
 
         private Delegates.MainMenu buildMenuWithDelegates()
         {
-            Delegates.MainMenu mainMenu = new Delegates.MainMenu("Delegates Main Menu");
+            Delegates.Menu mainMenu = new Delegates.Menu(null, "Delegates Main Menu");
             mainMenu.AddMenuItem(buildShowDateTimeMenu(mainMenu));
             mainMenu.AddMenuItem(buildVersionAndSpacesMenu(mainMenu));
 
-            return mainMenu;
+            return new Delegates.MainMenu(mainMenu);
         }
 
-        private Delegates.Menu buildShowDateTimeMenu(Delegates.MainMenu i_MainMenu)
+        private Delegates.Menu buildShowDateTimeMenu(Delegates.Menu i_MainMenu)
         {
             Delegates.Menu showDateTimeMenu = new Delegates.Menu(i_MainMenu, "Show Date/Time");
             Delegates.ActionMenuItem showDateMenuItem = new Delegates.ActionMenuItem("Show Date");
@@ -34,7 +34,7 @@ namespace Ex04.Menus.Test
             return showDateTimeMenu;
         }
 
-        private Delegates.Menu buildVersionAndSpacesMenu(Delegates.MainMenu i_MainMenu)
+        private Delegates.Menu buildVersionAndSpacesMenu(Delegates.Menu i_MainMenu)
         {
             Delegates.Menu versionAndSpacesMenu = new Delegates.Menu(i_MainMenu, "Version and Spaces");
             Delegates.ActionMenuItem showVersionMenuItem = new Delegates.ActionMenuItem("Show Version");

@@ -7,7 +7,6 @@ namespace Ex04.Menus.Delegates
     {
         private readonly List<MenuItem> r_MenuItems;
         private readonly Menu r_ParentMenu;
-        protected const int k_Back = 0;
         protected static Menu s_CurrentMenu;
 
         public Menu(Menu i_ParentMenu, string i_MenuItemTitle) : base(i_MenuItemTitle)
@@ -21,6 +20,14 @@ namespace Ex04.Menus.Delegates
             get
             {
                 return r_MenuItems.Count;
+            }
+        }
+
+        public Menu ParentMenu
+        {
+            get
+            {
+                return r_ParentMenu;
             }
         }
 
@@ -41,12 +48,12 @@ namespace Ex04.Menus.Delegates
                 Console.WriteLine($"{i + 1} -> {r_MenuItems[i].MenuItemTitle}");
             }
 
-            Console.WriteLine($"0 -> {(this is MainMenu ? "Exit" : "Back")}");
+            Console.WriteLine($"0 -> {(r_ParentMenu == null ? "Exit" : "Back")}");
         }
 
         protected internal void PrintUserInputRequest()
         {
-            Console.WriteLine($"Enter your request: (1 to {r_MenuItems.Count} or press {(this is MainMenu ? "Exit" : "Back")}).");
+            Console.WriteLine($"Enter your request: (1 to {r_MenuItems.Count} or press {(r_ParentMenu == null ? "Exit" : "Back")}).");
         }
 
         public override void ChooseItem()
@@ -57,6 +64,11 @@ namespace Ex04.Menus.Delegates
         protected internal void ChooseItemFromInput(int i_UserInput)
         {
             r_MenuItems[i_UserInput - 1].ChooseItem();
+        }
+
+        public Menu GetCurrentMenu()
+        {
+            return s_CurrentMenu;
         }
 
         protected internal void ReturnToParentMenu()

@@ -2,50 +2,54 @@
 
 namespace Ex04.Menus.Delegates
 {
-    public class MainMenu : Menu
+    public class MainMenu
     {
         private const string k_InvalidInputMsg = "Invalid input";
+        protected const int k_Back = 0;
+        private readonly Menu r_MainMenu;
 
-        public MainMenu(string i_MenuItemTitle) : base(null, i_MenuItemTitle)
+        public MainMenu(Menu i_MainMenu)
         {
-            s_CurrentMenu = this;
+            r_MainMenu = i_MainMenu;
+            r_MainMenu.ChooseItem();
         }
 
         public void Show()
         {
             bool programIsRunning = true;
             int menuOption;
-
+            Menu currentMenu;
             while(programIsRunning)
             {
-                displayCurrentMenu();
-                menuOption = readUserInput(s_CurrentMenu.MenuItemsCount);
+                currentMenu = r_MainMenu.GetCurrentMenu();
+                displayCurrentMenu(currentMenu);
+                menuOption = readUserInput(currentMenu.MenuItemsCount);
                 Console.Clear();
                 if (menuOption == k_Back)
                 {
-                    if(s_CurrentMenu is MainMenu)
+                    if(currentMenu.ParentMenu == null)
                     {
                         programIsRunning = false;
                     }
                     else
                     {
-                        s_CurrentMenu.ReturnToParentMenu();
+                       currentMenu.ReturnToParentMenu();
                     }
                 }
                 else
                 {
-                    s_CurrentMenu.ChooseItemFromInput(menuOption);
+                    currentMenu.ChooseItemFromInput(menuOption);
                 }
             }
         }
 
-        private void displayCurrentMenu()
+        private void displayCurrentMenu(Menu i_CurrentMenu)
         {
-            s_CurrentMenu.PrintTitle();
+            i_CurrentMenu.PrintTitle();
             printSeparator();
-            s_CurrentMenu.PrintMenuItems();
+            i_CurrentMenu.PrintMenuItems();
             printSeparator();
-            s_CurrentMenu.PrintUserInputRequest();
+            i_CurrentMenu.PrintUserInputRequest();
         }
 
         private void printSeparator()
