@@ -53,7 +53,7 @@ namespace Ex04.Menus.Delegates
 
         protected internal void PrintUserInputRequest()
         {
-            Console.WriteLine($"Enter your request: (1 to {r_MenuItems.Count} or press {(r_ParentMenu == null ? "Exit" : "Back")}).");
+            Console.Write($"Enter your request - (1 to {r_MenuItems.Count} or press {(r_ParentMenu == null ? "Exit" : "Back")}): ");
         }
 
         public override void ChooseItem()

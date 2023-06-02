@@ -17,10 +17,9 @@ namespace Ex04.Menus.Delegates
 
         protected virtual void OnChosen()
         {
-            if(Chosen != null)
-            {
-                Chosen.Invoke();
-            }
+            Chosen?.Invoke();
+            Console.WriteLine("Please press any key to continue...");
+            Console.ReadKey();
         }
     }
 }

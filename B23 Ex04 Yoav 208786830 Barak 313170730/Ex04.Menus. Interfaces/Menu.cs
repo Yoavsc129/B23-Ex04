@@ -88,7 +88,8 @@ namespace Ex04.Menus.Interfaces
         {
             int userChoice;
             MenuItem currentChooseItem;
-            
+
+            Console.Clear();
             printMenu();
             userChoice = getValidChosenItemNumberFromUserToSubMenu();
             currentChooseItem = r_CurrentMenuItemsList[userChoice];

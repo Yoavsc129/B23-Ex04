@@ -21,6 +21,7 @@ namespace Ex04.Menus.Delegates
             Menu currentMenu;
             while(programIsRunning)
             {
+                Console.Clear();
                 currentMenu = r_MainMenu.GetCurrentMenu();
                 displayCurrentMenu(currentMenu);
                 menuOption = readUserInput(currentMenu.MenuItemsCount);

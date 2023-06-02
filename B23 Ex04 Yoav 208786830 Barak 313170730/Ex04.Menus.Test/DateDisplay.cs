@@ -6,7 +6,7 @@ using Ex04.Menus.Interfaces;
 
 namespace Ex04.Menus.Test
 {
-    class DateDisplay:IItemAction
+    internal class DateDisplay : IItemAction
     {
         public void ShowDate()
         {

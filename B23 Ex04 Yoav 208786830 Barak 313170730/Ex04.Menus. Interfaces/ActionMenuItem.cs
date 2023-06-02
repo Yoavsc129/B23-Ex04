@@ -18,6 +18,8 @@ namespace Ex04.Menus.Interfaces
         public override void InvokeMenuItem()
         {
             r_ItemAction.InvokeMenuItemAction();
+            Console.WriteLine("Please press any key to continue...");
+            Console.ReadKey();
         }
     }
 }
