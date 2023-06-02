@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Ex04.Menus.Interfaces
 {
-    public interface IItemAction
+    public interface ICurrentMenuSetter
     {
-        void InvokeMenuItemAction();
+        void SetCurrentDisplayingMenu(Menu i_Menu);
     }
 }

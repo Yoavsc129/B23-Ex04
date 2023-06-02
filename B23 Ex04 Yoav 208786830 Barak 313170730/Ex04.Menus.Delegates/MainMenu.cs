@@ -6,7 +6,7 @@ namespace Ex04.Menus.Delegates
     {
         private const string k_InvalidInputMsg = "Invalid input";
 
-        public MainMenu(string i_MenuItemTitle) : base(null, i_MenuItemTitle)
+        public MainMenu(string i_MenuItemTitle) : base(i_MenuItemTitle, null)
         {
             s_CurrentMenu = this;
         }

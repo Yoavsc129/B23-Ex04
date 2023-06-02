@@ -1,87 +1,109 @@
 ﻿using System;
+using Ex04.Menus;
+
 
 namespace Ex04.Menus.Test
 {
     public class MenuTests
     {
-        private const char k_Space = ' ';
+
+        private readonly DateDisplay r_DateDisplay= new DateDisplay();
+        private readonly SpaceCounter r_SpaceCounter = new SpaceCounter();
+        private readonly TimeDisplay r_TimeDisplay = new TimeDisplay();
+        private readonly VersionDisplay r_VersionDisplay = new VersionDisplay();
 
         public void TestMenuWithDelegates()
         {
-            Delegates.MainMenu mainMenu = buildMenuWithDelegates();
-            mainMenu.Show();
+            Delegates.MainMenu delegatesMainMenu = buildMenuWithDelegates();
+            Interfaces.MainMenu interfacesMainMenu = buildMenuWithInterfaces();
+
+            delegatesMainMenu.Show();
+            interfacesMainMenu.Show();
+
+
         }
 
-        private Delegates.MainMenu buildMenuWithDelegates()
+        private Interfaces.MainMenu buildMenuWithInterfaces()
         {
-            Delegates.MainMenu mainMenu = new Delegates.MainMenu("Delegates Main Menu");
-            mainMenu.AddMenuItem(buildShowDateTimeMenu(mainMenu));
-            mainMenu.AddMenuItem(buildVersionAndSpacesMenu(mainMenu));
+            Interfaces.MainMenu mainMenu = new Interfaces.MainMenu("Interfaces Main Menu");
+
+            mainMenu.AddMenuItemToMenu(buildShowDateTimeMenuInterfaces(mainMenu));
+            mainMenu.AddMenuItemToMenu(buildVersionAndSpacesMenuInterfaces(mainMenu));
 
             return mainMenu;
         }
 
-        private Delegates.Menu buildShowDateTimeMenu(Delegates.MainMenu i_MainMenu)
+     
+        private Delegates.MainMenu buildMenuWithDelegates()
         {
-            Delegates.Menu showDateTimeMenu = new Delegates.Menu(i_MainMenu, "Show Date/Time");
+            Delegates.MainMenu mainMenu = new Delegates.MainMenu("Delegates Main Menu");
+
+            mainMenu.AddMenuItem(buildShowDateTimeMenuDelegates(mainMenu));
+            mainMenu.AddMenuItem(buildVersionAndSpacesMenuDelegates(mainMenu));
+
+            return mainMenu;
+        }
+
+        private Delegates.Menu buildShowDateTimeMenuDelegates(Delegates.MainMenu i_MainMenu)
+        {
+            Delegates.Menu showDateTimeMenu = new Delegates.Menu("Show Date/Time", i_MainMenu);
             Delegates.ActionMenuItem showDateMenuItem = new Delegates.ActionMenuItem("Show Date");
-            showDateMenuItem.Chosen += showDate;
+            showDateMenuItem.Chosen += r_DateDisplay.ShowDate;
             showDateTimeMenu.AddMenuItem(showDateMenuItem);
             Delegates.ActionMenuItem showTimeMenuItem = new Delegates.ActionMenuItem("Show Time");
-            showTimeMenuItem.Chosen += showTime;
+            showTimeMenuItem.Chosen += r_TimeDisplay.ShowTime;
             showDateTimeMenu.AddMenuItem(showTimeMenuItem);
 
             return showDateTimeMenu;
         }
 
-        private Delegates.Menu buildVersionAndSpacesMenu(Delegates.MainMenu i_MainMenu)
+        private Delegates.Menu buildVersionAndSpacesMenuDelegates(Delegates.MainMenu i_MainMenu)
         {
-            Delegates.Menu versionAndSpacesMenu = new Delegates.Menu(i_MainMenu, "Version and Spaces");
+            Delegates.Menu versionAndSpacesMenu = new Delegates.Menu( "Version and Spaces", i_MainMenu);
             Delegates.ActionMenuItem showVersionMenuItem = new Delegates.ActionMenuItem("Show Version");
-            showVersionMenuItem.Chosen += showVersion;
+            showVersionMenuItem.Chosen += r_VersionDisplay.ShowVersion;
             versionAndSpacesMenu.AddMenuItem(showVersionMenuItem);
             Delegates.ActionMenuItem countSpacesMenuItem = new Delegates.ActionMenuItem("Count Spaces");
-            countSpacesMenuItem.Chosen += countSpaces;
+            countSpacesMenuItem.Chosen += r_SpaceCounter.CountSpaces;
             versionAndSpacesMenu.AddMenuItem(countSpacesMenuItem);
 
             return versionAndSpacesMenu;
         }
 
-        private void showDate()
+
+        private Interfaces.Menu buildVersionAndSpacesMenuInterfaces(Interfaces.MainMenu i_MainMenu)
         {
-            Console.WriteLine(DateTime.Now.ToString("d") + Environment.NewLine);
+            Interfaces.Menu showDateTimeMenu ;
+            Interfaces.ActionMenuItem showDateMenuItem;
+            Interfaces.ActionMenuItem showTimeMenuItem;
+
+            showDateTimeMenu = new Interfaces.Menu( "Show Date/Time", i_MainMenu.Menu, i_MainMenu);
+            showDateMenuItem = new Interfaces.ActionMenuItem("Show Date",r_DateDisplay);
+            showDateTimeMenu.AddNewMenuItemToChildList(showDateMenuItem);
+            showTimeMenuItem = new Interfaces.ActionMenuItem("Show Time",r_TimeDisplay);
+        
+            showDateTimeMenu.AddNewMenuItemToChildList(showTimeMenuItem);
+
+            return showDateTimeMenu;
         }
 
-        private void showTime()
+        private Interfaces.Menu buildShowDateTimeMenuInterfaces(Interfaces.MainMenu i_MainMenu)
         {
-            Console.WriteLine(DateTime.Now.ToString("T") + Environment.NewLine);
+            Interfaces.Menu versionAndSpacesMenu;
+            Interfaces.ActionMenuItem showVersionMenuItem;
+            Interfaces.ActionMenuItem countSpacesMenuItem;
+
+            versionAndSpacesMenu = new Interfaces.Menu( "Version and Spaces", i_MainMenu.Menu, i_MainMenu);
+            showVersionMenuItem = new Interfaces.ActionMenuItem("Show Version", r_VersionDisplay);
+            versionAndSpacesMenu.AddNewMenuItemToChildList(showVersionMenuItem);
+            countSpacesMenuItem = new Interfaces.ActionMenuItem("Count Spaces", r_SpaceCounter);
+            versionAndSpacesMenu.AddNewMenuItemToChildList(countSpacesMenuItem);
+
+            return versionAndSpacesMenu;
         }
 
-        private void showVersion()
-        {
-            Console.WriteLine("Version: 23.2.4.9805" + Environment.NewLine);
-        }
 
-        private void countSpaces()
-        {
-            string userSentence;
-            int spaceCounter = 0;
 
-            Console.WriteLine("Please enter your sentence");
-            userSentence = Console.ReadLine();
 
-            if(userSentence != null)
-            {
-                foreach(char letter in userSentence)
-                {
-                    if(letter == k_Space)
-                    {
-                        spaceCounter++;
-                    }
-                }
-            }
-
-            Console.WriteLine($"There are {spaceCounter} spaces in your sentence {Environment.NewLine}");
-        }
     }
 }

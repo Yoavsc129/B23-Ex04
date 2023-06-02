@@ -10,7 +10,7 @@ namespace Ex04.Menus.Delegates
         protected const int k_Back = 0;
         protected static Menu s_CurrentMenu;
 
-        public Menu(Menu i_ParentMenu, string i_MenuItemTitle) : base(i_MenuItemTitle)
+        public Menu(string i_MenuItemTitle, Menu i_ParentMenu) : base(i_MenuItemTitle)
         {
             r_MenuItems = new List<MenuItem>();
             r_ParentMenu = i_ParentMenu;
