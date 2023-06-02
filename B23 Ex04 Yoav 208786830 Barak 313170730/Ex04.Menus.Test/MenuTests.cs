@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Ex04.Menus;
 
 
@@ -36,8 +36,11 @@ namespace Ex04.Menus.Test
      
         private Delegates.MainMenu buildMenuWithDelegates()
         {
-            Delegates.MainMenu mainMenu = new Delegates.MainMenu("Delegates Main Menu");
+            Delegates.Menu mainMenu = new Delegates.Menu(null, "Delegates Main Menu");
+            mainMenu.AddMenuItem(buildShowDateTimeMenu(mainMenu));
+            mainMenu.AddMenuItem(buildVersionAndSpacesMenu(mainMenu));
 
+            return new Delegates.MainMenu(mainMenu);
             mainMenu.AddMenuItem(buildShowDateTimeMenuDelegates(mainMenu));
             mainMenu.AddMenuItem(buildVersionAndSpacesMenuDelegates(mainMenu));
 
