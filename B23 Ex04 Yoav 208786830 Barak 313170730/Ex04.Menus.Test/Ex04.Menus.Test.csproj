@@ -33,7 +33,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DateDisplay.cs" />
-    <Compile Include="MenuItem.cs" />
     <Compile Include="MenuTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="SpaceCounter.cs" />

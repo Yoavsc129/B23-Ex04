@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Ex04.Menus.Interfaces;
 
 namespace Ex04.Menus.Test
 {
-    class SpaceCounter :IItemAction
+    internal class SpaceCounter : IItemAction
     {
         private const char k_Space = ' ';
+
         public void CountSpaces()
         {
             string userSentence;
@@ -16,7 +14,6 @@ namespace Ex04.Menus.Test
 
             Console.Write("Please enter your sentence: ");
             userSentence = Console.ReadLine();
-
             if (userSentence != null)
             {
                 foreach (char letter in userSentence)
@@ -37,4 +34,3 @@ namespace Ex04.Menus.Test
         }
     }
 }
-

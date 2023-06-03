@@ -1,7 +1,4 @@
-﻿using System;
-using Ex04.Menus.Interfaces;
-
-namespace Ex04.Menus.Interfaces
+﻿namespace Ex04.Menus.Interfaces
 {
     public class MainMenu : ICurrentMenuSetter
     {
@@ -9,7 +6,7 @@ namespace Ex04.Menus.Interfaces
 
         public MainMenu(string i_MenuItemTitle)
         {
-            Menu = new Menu("Interfaces Main Menu", null, this);
+            Menu = new Menu(i_MenuItemTitle, null, this);
             m_CurrentMenuItem = Menu;
         }
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Ex04.Menus.Interfaces
@@ -48,7 +47,7 @@ namespace Ex04.Menus.Interfaces
             menuDisplayBuilder.AppendLine(k_SeparatorLine);
             foreach (MenuItem currentMenuItem in r_CurrentMenuItemsList)
             {
-                if(currentItemIndex > 0)
+                if (currentItemIndex > 0)
                 {
                     menuDisplayBuilder.AppendLine($"{currentItemIndex}-> {currentMenuItem.ItemDescription}");
                 }
@@ -97,7 +96,7 @@ namespace Ex04.Menus.Interfaces
             {
                 r_CurrentMenuSetter.SetCurrentDisplayingMenu(subMenu);
             }
-            else if(currentChooseItem == null)
+            else if (currentChooseItem == null)
             {
                 r_CurrentMenuSetter.SetCurrentDisplayingMenu(null);
             }

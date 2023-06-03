@@ -4,8 +4,8 @@ namespace Ex04.Menus.Delegates
 {
     public class MainMenu
     {
-        private const string k_InvalidInputMsg = "Invalid input";
-        protected const int k_Back = 0;
+        private const string k_InvalidInputMsg = "The input you entered is invalid.Please try again: ";
+        private const int k_Back = 0;
         private readonly Menu r_MainMenu;
 
         public MainMenu(Menu i_MainMenu)
@@ -19,7 +19,8 @@ namespace Ex04.Menus.Delegates
             bool programIsRunning = true;
             int menuOption;
             Menu currentMenu;
-            while(programIsRunning)
+
+            while (programIsRunning)
             {
                 Console.Clear();
                 currentMenu = r_MainMenu.GetCurrentMenu();
@@ -28,13 +29,13 @@ namespace Ex04.Menus.Delegates
                 Console.Clear();
                 if (menuOption == k_Back)
                 {
-                    if(currentMenu.ParentMenu == null)
+                    if (currentMenu.ParentMenu == null)
                     {
                         programIsRunning = false;
                     }
                     else
                     {
-                       currentMenu.ReturnToParentMenu();
+                        currentMenu.ReturnToParentMenu();
                     }
                 }
                 else
@@ -64,16 +65,16 @@ namespace Ex04.Menus.Delegates
             bool inputIsInvalid = true;
             bool parseSuccessful;
 
-            while(inputIsInvalid)
+            while (inputIsInvalid)
             {
                 parseSuccessful = int.TryParse(Console.ReadLine(), out userInput);
-                if(userInput >= k_Back && userInput <= i_InputRange && parseSuccessful)
+                if (userInput >= k_Back && userInput <= i_InputRange && parseSuccessful)
                 {
                     inputIsInvalid = false;
                 }
                 else
                 {
-                    Console.WriteLine(k_InvalidInputMsg);
+                    Console.Write(k_InvalidInputMsg);
                 }
             }
 
