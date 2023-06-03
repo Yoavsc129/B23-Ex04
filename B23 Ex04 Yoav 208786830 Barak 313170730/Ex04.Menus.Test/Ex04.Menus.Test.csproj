@@ -32,10 +32,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DateDisplay.cs" />
     <Compile Include="MenuTests.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="SpaceCounter.cs" />
+    <Compile Include="TimeDisplay.cs" />
+    <Compile Include="VersionDisplay.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ex04.Menus. Interfaces\Ex04.Menus.Interfaces.csproj">
+      <Project>{94e70c9e-b65c-408e-93b3-680c5112ce8c}</Project>
+      <Name>Ex04.Menus.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ex04.Menus.Delegates\Ex04.Menus.Delegates.csproj">
       <Project>{25b314e1-2117-4c26-b62d-e177da45ef71}</Project>
       <Name>Ex04.Menus.Delegates</Name>

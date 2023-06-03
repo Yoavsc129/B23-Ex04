@@ -5,6 +5,7 @@
         public static void Main()
         {
             MenuTests menuTests = new MenuTests();
+
             menuTests.TestMenuWithDelegates();
         }
     }

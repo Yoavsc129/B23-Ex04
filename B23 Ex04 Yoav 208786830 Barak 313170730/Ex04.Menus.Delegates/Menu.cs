@@ -9,7 +9,7 @@ namespace Ex04.Menus.Delegates
         private readonly Menu r_ParentMenu;
         protected static Menu s_CurrentMenu;
 
-        public Menu(Menu i_ParentMenu, string i_MenuItemTitle) : base(i_MenuItemTitle)
+        public Menu(string i_MenuItemTitle, Menu i_ParentMenu) : base(i_MenuItemTitle)
         {
             r_MenuItems = new List<MenuItem>();
             r_ParentMenu = i_ParentMenu;
@@ -53,7 +53,7 @@ namespace Ex04.Menus.Delegates
 
         protected internal void PrintUserInputRequest()
         {
-            Console.WriteLine($"Enter your request: (1 to {r_MenuItems.Count} or press {(r_ParentMenu == null ? "Exit" : "Back")}).");
+            Console.Write($"Enter your request - (1 to {r_MenuItems.Count} or press {(r_ParentMenu == null ? "Exit" : "Back")}): ");
         }
 
         public override void ChooseItem()
